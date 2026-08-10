@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { and, eq, gte, lte, like, or, between, desc, sql, count } from 'drizzle-orm';
+import { eq, or, and, gte, lte, between, count, sql, desc } from 'drizzle-orm';
 import { z } from 'zod';
 
 import { db } from '../db/index.js';

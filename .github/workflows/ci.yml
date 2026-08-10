@@ -20,19 +20,19 @@ jobs:
         node-version: 22
 
     - name: Install dependencies
-      working-directory: server
+      working-directory: thuenha-project-tuan1/thuenha-project/server
       run: npm ci
 
     - name: Run Linter
-      working-directory: server
+      working-directory: thuenha-project-tuan1/thuenha-project/server
       run: npm run lint
 
     - name: Verify Database Migration
-      working-directory: server
+      working-directory: thuenha-project-tuan1/thuenha-project/server
       run: |
         export DATABASE_PATH=/tmp/test.db
         npm run db:migrate
 
     - name: Security Audit
-      working-directory: server
+      working-directory: thuenha-project-tuan1/thuenha-project/server
       run: npm audit --audit-level=high
