@@ -1,0 +1,129 @@
+### Thuê Nhà API Test — dùng với VS Code REST Client extension
+### Biến dùng chung
+@baseUrl = http://localhost:4000/api
+@csrfToken = {{login.response.body.csrfToken}}
+
+### ─────────────────────────────────────────────────────────────────
+### 1. AUTH — Đăng nhập (lấy cookie + CSRF token)
+### ─────────────────────────────────────────────────────────────────
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@thuenha.vn",
+  "password": "admin12345"
+}
+
+### ─────────────────────────────────────────────────────────────────
+### 2. AUTH — Kiểm tra session hiện tại
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/auth/me
+
+### ─────────────────────────────────────────────────────────────────
+### 3. LISTINGS — Lấy danh sách (có phân trang)
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings?page=1&pageSize=10
+
+### ─────────────────────────────────────────────────────────────────
+### 4. LISTINGS — Lấy danh sách có filter
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings?type=apartment&minPrice=5000000&maxPrice=15000000&bedrooms=2&page=1&pageSize=5
+
+### ─────────────────────────────────────────────────────────────────
+### 5. LISTINGS — Tìm kiếm từ khóa
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings?q=Quận 1&page=1&pageSize=10
+
+### ─────────────────────────────────────────────────────────────────
+### 6. LISTINGS — Lọc theo bounding box (bản đồ)
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings?minLat=10.75&maxLat=10.80&minLng=106.68&maxLng=106.72&page=1&pageSize=20
+
+### ─────────────────────────────────────────────────────────────────
+### 7. LISTINGS — "Gần tôi" (haversine sort + filter bán kính)
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings?nearLat=10.7769&nearLng=106.7009&radiusKm=3&page=1&pageSize=10
+
+### ─────────────────────────────────────────────────────────────────
+### 8. LISTINGS — Chi tiết 1 tin (kèm ảnh)
+### ─────────────────────────────────────────────────────────────────
+GET {{baseUrl}}/listings/1
+
+### ─────────────────────────────────────────────────────────────────
+### 9. LISTINGS — Tạo tin mới (JSON, không có ảnh)
+### Cần đăng nhập trước (chạy request #1)
+### ─────────────────────────────────────────────────────────────────
+POST {{baseUrl}}/listings
+Content-Type: application/json
+x-csrf-token: {{csrfToken}}
+
+{
+  "titleVi": "Phòng trọ test API, gần Bến Thành",
+  "titleEn": "Test room near Ben Thanh market",
+  "descVi": "Phòng trọ sạch đẹp, đầy đủ nội thất, gần chợ Bến Thành. Giá tốt.",
+  "descEn": "Clean, fully furnished room near Ben Thanh market. Good price.",
+  "price": 5000000,
+  "area": 25,
+  "bedrooms": 1,
+  "type": "room",
+  "lat": 10.7721,
+  "lng": 106.6981,
+  "address": "123 Lê Lợi, Quận 1, TP.HCM",
+  "amenities": ["wifi", "ac", "parking"]
+}
+
+### ─────────────────────────────────────────────────────────────────
+### 10. LISTINGS — Sửa tin (partial update)
+### ─────────────────────────────────────────────────────────────────
+PUT {{baseUrl}}/listings/1
+Content-Type: application/json
+x-csrf-token: {{csrfToken}}
+
+{
+  "price": 6000000,
+  "titleVi": "Phòng trọ đã sửa giá"
+}
+
+### ─────────────────────────────────────────────────────────────────
+### 11. LISTINGS — Xóa tin
+### ─────────────────────────────────────────────────────────────────
+DELETE {{baseUrl}}/listings/31
+x-csrf-token: {{csrfToken}}
+
+### ─────────────────────────────────────────────────────────────────
+### 12. AUTH — Đăng xuất
+### ─────────────────────────────────────────────────────────────────
+POST {{baseUrl}}/auth/logout
+
+### ─────────────────────────────────────────────────────────────────
+### 13. TEST BẢO MẬT — Gọi POST không có CSRF token (phải bị chặn 403)
+### ─────────────────────────────────────────────────────────────────
+POST {{baseUrl}}/listings
+Content-Type: application/json
+
+{
+  "titleVi": "Test CSRF bypass",
+  "titleEn": "Should fail",
+  "descVi": "This should be blocked by CSRF protection",
+  "descEn": "This should be blocked",
+  "price": 1000000,
+  "area": 10,
+  "bedrooms": 1,
+  "type": "room",
+  "lat": 10.77,
+  "lng": 106.70,
+  "address": "Test address"
+}
+
+### ─────────────────────────────────────────────────────────────────
+### 14. TEST BẢO MẬT — Login sai mật khẩu (test rate limit)
+### Chạy 6 lần liên tục → lần thứ 6 phải bị chặn
+### ─────────────────────────────────────────────────────────────────
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@thuenha.vn",
+  "password": "wrong-password-12345"
+}
