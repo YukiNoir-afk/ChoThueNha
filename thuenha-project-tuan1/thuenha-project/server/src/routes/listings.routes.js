@@ -35,6 +35,10 @@ const searchQuerySchema = z.object({
   radiusKm: z.coerce.number().optional(),
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce.number().int().min(1).max(MAX_PAGE_SIZE).default(DEFAULT_PAGE_SIZE),
+}).refine(data => data.minPrice === undefined || data.maxPrice === undefined || data.minPrice <= data.maxPrice, { 
+  message: 'Giá tối thiểu không được lớn hơn giá tối đa' 
+}).refine(data => data.minArea === undefined || data.maxArea === undefined || data.minArea <= data.maxArea, { 
+  message: 'Diện tích tối thiểu không được lớn hơn diện tích tối đa' 
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -47,11 +51,12 @@ router.get('/', async (req, res, next) => {
 
     const conditions = [eq(listings.isPublished, true)];
     if (q.q) {
+      const escaped = q.q.replace(/[%_\\]/g, (c) => '\\' + c);
       conditions.push(
         or(
-          like(listings.titleVi, `%${q.q}%`),
-          like(listings.titleEn, `%${q.q}%`),
-          like(listings.address, `%${q.q}%`),
+          sql`${listings.titleVi} LIKE ${'%' + escaped + '%'} ESCAPE '\\'`,
+          sql`${listings.titleEn} LIKE ${'%' + escaped + '%'} ESCAPE '\\'`,
+          sql`${listings.address} LIKE ${'%' + escaped + '%'} ESCAPE '\\'`,
         ),
       );
     }

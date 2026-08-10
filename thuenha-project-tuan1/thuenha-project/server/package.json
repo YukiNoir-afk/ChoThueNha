@@ -11,7 +11,8 @@
     "db:studio": "drizzle-kit studio",
     "seed": "node src/db/seed.js",
     "seed:admin": "node src/db/seedAdmin.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "node --test test/api.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -32,7 +33,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "drizzle-kit": "^0.31.10",
-    "eslint": "^9.9.0"
+    "eslint": "^9.9.0",
+    "globals": "^17.9.0"
   }
 }

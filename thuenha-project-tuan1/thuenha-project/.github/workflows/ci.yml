@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      working-directory: server
+      run: npm ci
+
+    - name: Run Linter
+      working-directory: server
+      run: npm run lint
+
+    - name: Verify Database Migration
+      working-directory: server
+      run: |
+        export DATABASE_PATH=/tmp/test.db
+        npm run db:migrate
+
+    - name: Security Audit
+      working-directory: server
+      run: npm audit --audit-level=high

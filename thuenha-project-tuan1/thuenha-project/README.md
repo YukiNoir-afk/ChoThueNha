@@ -58,3 +58,16 @@ thuenha-project/
 - Chưa động vào `client/` — tuần 3.
 - Chưa làm bảng `users`/`favorites` (giai đoạn 2) — đã comment sẵn vị trí trong `schema.js` để nhớ.
 - Chưa cần Swagger/OpenAPI — dùng file `.http` test tay là đủ ở giai đoạn này.
+
+## Tài liệu API
+
+| Method | Path | Mô tả | Query / Body Params chính | Auth yêu cầu |
+|--------|------|-------|---------------------------|--------------|
+| `POST` | `/api/auth/login` | Đăng nhập lấy Cookie & CSRF | `email`, `password` | Không |
+| `GET`  | `/api/auth/me` | Lấy thông tin user hiện tại | - | Có (Cookie) |
+| `POST` | `/api/auth/logout` | Đăng xuất | - | Có (Cookie) |
+| `GET`  | `/api/listings` | Lọc & tìm kiếm | `q`, `type`, `minPrice`, `maxPrice`, `page`, `pageSize`, toạ độ... | Không |
+| `GET`  | `/api/listings/:id` | Chi tiết 1 tin | `id` | Không |
+| `POST` | `/api/listings` | Tạo tin (Multipart) | `titleVi`, `price`, `images`... | Có (Cookie + CSRF) |
+| `PUT`  | `/api/listings/:id` | Cập nhật tin (Multipart) | Các trường cần sửa, `images` | Có (Cookie + CSRF) |
+| `DELETE`| `/api/listings/:id` | Xóa tin | `id` | Có (Cookie + CSRF) |
