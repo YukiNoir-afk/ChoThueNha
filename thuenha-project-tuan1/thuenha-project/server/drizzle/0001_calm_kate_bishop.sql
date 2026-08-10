@@ -1,0 +1,1 @@
+CREATE INDEX `listing_filter_idx` ON `listings` (`type`,`is_published`,`created_at`);

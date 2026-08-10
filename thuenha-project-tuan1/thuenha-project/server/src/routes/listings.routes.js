@@ -142,7 +142,7 @@ router.get('/', async (req, res, next) => {
 // ─────────────────────────────────────────────────────────────────────────────
 router.get('/:id', async (req, res, next) => {
   try {
-    const listing = db.query.listings.findFirst({
+    const listing = await db.query.listings.findFirst({
       where: eq(listings.id, Number(req.params.id)),
       with: { images: true },
     });
@@ -206,7 +206,7 @@ router.post(
       }
 
       // Trả listing + images
-      const created = db.query.listings.findFirst({
+      const created = await db.query.listings.findFirst({
         where: eq(listings.id, listingId),
         with: { images: true },
       });
@@ -219,12 +219,6 @@ router.post(
           const { unlink } = await import('node:fs/promises');
           await unlink(f.path).catch(() => {});
         }
-      }
-      // Zod validation errors → format đẹp hơn
-      if (err.name === 'ZodError') {
-        err.statusCode = 400;
-        err.message = 'Dữ liệu không hợp lệ';
-        err.details = err.issues;
       }
       next(err);
     }
@@ -321,7 +315,7 @@ router.put(
       }
 
       // Trả listing + images mới
-      const updated = db.query.listings.findFirst({
+      const updated = await db.query.listings.findFirst({
         where: eq(listings.id, listingId),
         with: { images: true },
       });
@@ -334,11 +328,6 @@ router.put(
           const { unlink } = await import('node:fs/promises');
           await unlink(f.path).catch(() => {});
         }
-      }
-      if (err.name === 'ZodError') {
-        err.statusCode = 400;
-        err.message = 'Dữ liệu không hợp lệ';
-        err.details = err.issues;
       }
       next(err);
     }

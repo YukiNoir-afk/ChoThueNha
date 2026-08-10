@@ -7,6 +7,15 @@ export class AppError extends Error {
 
 // eslint-disable-next-line no-unused-vars
 export function errorHandler(err, req, res, next) {
+  if (err.name === 'ZodError') {
+    return res.status(400).json({
+      error: {
+        message: 'Dữ liệu không hợp lệ',
+        details: err.issues,
+      },
+    });
+  }
+
   const statusCode = err.statusCode || 500;
 
   if (statusCode >= 500) {

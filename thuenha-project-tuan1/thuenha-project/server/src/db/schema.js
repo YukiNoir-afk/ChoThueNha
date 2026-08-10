@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, real, index } from 'drizzle-orm/sqlite-core';
 import { relations, sql } from 'drizzle-orm';
 
 // ---------------------------------------------------------------------------
@@ -49,7 +49,9 @@ export const listings = sqliteTable('listings', {
   updatedAt: integer('updated_at', { mode: 'timestamp' })
     .notNull()
     .default(sql`(unixepoch())`),
-});
+}, (table) => ({
+  filterIdx: index('listing_filter_idx').on(table.type, table.isPublished, table.createdAt)
+}));
 
 // ---------------------------------------------------------------------------
 // listing_images — quan hệ 1-N với listings, có sortOrder để giữ thứ tự ảnh
