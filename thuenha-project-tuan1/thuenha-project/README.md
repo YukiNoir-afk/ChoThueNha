@@ -44,14 +44,14 @@ thuenha-project/
 
 ## Việc cần làm để chạy được (còn lại của tuần 1)
 
-1. `cd server && npm install`
-2. `cp .env.example .env` rồi đổi `JWT_SECRET`/`CSRF_SECRET` (dùng lệnh gợi ý trong file)
-3. Tạo admin đầu tiên: viết 1 script nhỏ `hash password bằng bcrypt rồi insert vào admin_users` (chưa có sẵn trong khung — làm cùng lúc với việc viết `POST /listings` thật)
-4. `npm run db:generate` → sinh migration từ schema.js
-5. `npm run db:migrate` → tạo file `data/thuenha.db`
-6. `npm run seed` → có 30 tin mẫu để test
-7. `npm run dev` → server chạy ở `http://localhost:4000`
-8. Điền phần TODO trong `listings.routes.js` (POST/PUT/DELETE) — đây là phần còn lại của tuần 1 theo kế hoạch gốc (multer + sharp resize ảnh, validate Zod).
+1. ~~`cd server && npm install`~~ (Đã hoàn thành)
+2. ~~`cp .env.example .env` rồi đổi `JWT_SECRET`/`CSRF_SECRET`~~ (Đã hoàn thành)
+3. ~~Tạo admin đầu tiên: viết 1 script nhỏ `hash password bằng bcrypt rồi insert vào admin_users`~~ (Đã tạo `seedAdmin.js`)
+4. ~~`npm run db:generate` → sinh migration từ schema.js~~ (Đã hoàn thành)
+5. ~~`npm run db:migrate` → tạo file `data/thuenha.db`~~ (Đã hoàn thành)
+6. ~~`npm run seed` → có 30 tin mẫu để test~~ (Đã hoàn thành)
+7. ~~`npm run dev` → server chạy ở `http://localhost:4000`~~ (Đã thiết lập)
+8. ~~Điền phần TODO trong `listings.routes.js` (POST/PUT/DELETE) — đây là phần còn lại của tuần 1 theo kế hoạch gốc (multer + sharp resize ảnh, validate Zod).~~ (Đã hoàn thành toàn bộ CRUD)
 
 ## Việc KHÔNG làm ở tuần 1 (để tránh lan man)
 
