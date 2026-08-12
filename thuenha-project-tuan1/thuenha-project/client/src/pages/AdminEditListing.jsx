@@ -1,7 +1,7 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '../../lib/api';
-import ListingForm from '../../components/admin/ListingForm';
+import api from '../lib/api';
+import ListingForm from '../components/admin/ListingForm';
 
 export default function AdminEditListing() {
   const { id } = useParams();

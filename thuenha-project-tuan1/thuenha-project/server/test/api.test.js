@@ -11,8 +11,8 @@ if (fs.existsSync(`${TEST_DB_PATH}-shm`)) fs.unlinkSync(`${TEST_DB_PATH}-shm`);
 
 // QUAN TRỌNG: Cài đặt biến môi trường cho test DB trước khi import
 process.env.DATABASE_PATH = TEST_DB_PATH;
-process.env.JWT_SECRET = 'test-secret';
-process.env.CSRF_SECRET = 'test-csrf';
+process.env.JWT_SECRET = 'test-secret-test-secret-test-secret-test-secret';
+process.env.CSRF_SECRET = 'test-csrf-test-csrf-test-csrf-test-csrf-test-csrf';
 process.env.NODE_ENV = 'test';
 
 // Import sau khi set env

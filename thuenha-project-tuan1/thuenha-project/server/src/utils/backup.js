@@ -4,7 +4,7 @@ import cron from 'node-cron';
 import { env } from '../config/env.js';
 
 export async function backupDatabase() {
-  const dbPath = path.resolve('sqlite.db');
+  const dbPath = path.resolve(env.DATABASE_PATH);
   const backupDir = path.resolve('backups');
   
   try {

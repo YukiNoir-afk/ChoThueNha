@@ -10,6 +10,7 @@ import { upload, processUploadedImages, deleteImageFile } from '../middleware/up
 import { haversineKm } from '../utils/haversine.js';
 import { listingCreateSchema, listingUpdateSchema, deleteImageIdsSchema } from '../utils/validation.js';
 import { AppError } from '../middleware/errorHandler.js';
+import { env } from '../config/env.js';
 
 const router = Router();
 
@@ -54,7 +55,7 @@ router.get('/', async (req, res, next) => {
     if (token) {
       try {
         const jwt = await import('jsonwebtoken');
-        jwt.verify(token, process.env.JWT_SECRET);
+        jwt.verify(token, env.JWT_SECRET);
         isAdmin = true;
       } catch (e) {
         // Token không hợp lệ thì thôi, coi như guest

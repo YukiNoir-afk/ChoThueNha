@@ -3,8 +3,9 @@ import path from 'node:path';
 import Database from 'better-sqlite3';
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import * as schema from './schema.js';
+import { env } from '../config/env.js';
 
-const DB_PATH = process.env.DATABASE_PATH || './data/thuenha.db';
+const DB_PATH = env.DATABASE_PATH;
 fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 
 const sqlite = new Database(DB_PATH);
