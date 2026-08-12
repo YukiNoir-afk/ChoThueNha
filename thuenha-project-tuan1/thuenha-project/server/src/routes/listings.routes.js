@@ -43,13 +43,28 @@ const searchQuerySchema = z.object({
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GET /api/listings — luôn phân trang, KHÔNG bao giờ trả toàn bộ bảng
-// Trả kèm totalCount để frontend tính tổng số trang + thumbnail (ảnh đầu tiên)
 // ─────────────────────────────────────────────────────────────────────────────
 router.get('/', async (req, res, next) => {
   try {
     const q = searchQuerySchema.parse(req.query);
 
-    const conditions = [eq(listings.isPublished, true)];
+    // Kiểm tra nhanh token từ cookie để xem có phải admin không
+    let isAdmin = false;
+    const token = req.cookies?.token;
+    if (token) {
+      try {
+        const jwt = await import('jsonwebtoken');
+        jwt.verify(token, process.env.JWT_SECRET);
+        isAdmin = true;
+      } catch (e) {
+        // Token không hợp lệ thì thôi, coi như guest
+      }
+    }
+
+    const conditions = [];
+    if (!isAdmin) {
+      conditions.push(eq(listings.isPublished, true));
+    }
     if (q.q) {
       const escaped = q.q.replace(/[%_\\]/g, (c) => '\\' + c);
       conditions.push(

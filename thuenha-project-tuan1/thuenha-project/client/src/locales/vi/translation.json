@@ -1,0 +1,76 @@
+{
+  "header": {
+    "home": "Trang chủ",
+    "apartment": "Căn hộ",
+    "room": "Phòng trọ",
+    "house": "Nhà nguyên căn",
+    "studio": "Studio",
+    "login": "Đăng nhập",
+    "langSwitch": "EN"
+  },
+  "hero": {
+    "title": "Tìm nơi ở lý tưởng của bạn",
+    "subtitle": "Hàng ngàn phòng trọ, căn hộ, nhà cho thuê giá tốt tại Việt Nam"
+  },
+  "search": {
+    "keyword": "Tìm kiếm",
+    "keywordPlaceholder": "Địa chỉ, khu vực, quận...",
+    "type": "Loại hình",
+    "typePlaceholder": "Tất cả loại hình",
+    "typeRoom": "Phòng trọ",
+    "typeApartment": "Căn hộ",
+    "typeHouse": "Nhà nguyên căn",
+    "typeStudio": "Studio",
+    "price": "Khoảng giá",
+    "priceMin": "Giá thấp nhất",
+    "priceMax": "Giá cao nhất",
+    "area": "Diện tích",
+    "areaMin": "Từ m²",
+    "areaMax": "Đến m²",
+    "bedrooms": "Phòng ngủ",
+    "bedroomsPlaceholder": "Số PN",
+    "searchBtn": "Tìm kiếm",
+    "noResults": "Không tìm thấy kết quả nào",
+    "noResultsDesc": "Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm",
+    "loading": "Đang tải dữ liệu...",
+    "errorLoading": "Đã xảy ra lỗi khi tải dữ liệu",
+    "retry": "Thử lại",
+    "nearMeBtn": "📍 Gần tôi",
+    "nearMeActive": "✕ Bỏ lọc vị trí",
+    "nearMeResults": "Kết quả gần bạn ({{count}})"
+  },
+  "listing": {
+    "bedroom_one": "{{count}} PN",
+    "bedroom_other": "{{count}} PN",
+    "perMonth": "/tháng",
+    "seeAll": "Xem tất cả",
+    "featured": "Nổi bật",
+    "popular": "Tin đăng phổ biến"
+  },
+  "detail": {
+    "title": "Chi tiết tin đăng",
+    "comingSoon": "Trang chi tiết sẽ được hoàn thiện ở Tuần 5"
+  },
+  "admin": {
+    "login": "Đăng nhập Quản trị",
+    "dashboard": "Bảng điều khiển",
+    "newListing": "Đăng tin mới",
+    "comingSoon": "Trang quản trị sẽ được hoàn thiện ở Tuần 6"
+  },
+  "footer": {
+    "support": "Hỗ trợ",
+    "faq": "Câu hỏi thường gặp",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản sử dụng",
+    "privacy": "Chính sách bảo mật",
+    "about": "Về chúng tôi",
+    "aboutDesc": "Giới thiệu ThuêNhà",
+    "careers": "Tuyển dụng",
+    "blog": "Blog",
+    "forLandlords": "Dành cho chủ nhà",
+    "postListing": "Đăng tin cho thuê",
+    "pricingPlans": "Bảng giá dịch vụ",
+    "landlordGuide": "Hướng dẫn chủ nhà",
+    "copyright": "© {{year}} ThuêNhà. Đã đăng ký bản quyền."
+  }
+}

@@ -32,9 +32,9 @@ export function createApp() {
   app.use('/api/listings', listingsRoutes);
 
   // --- Từ tuần 8: serve React build ở đây (monolith) ---
-  // const clientDist = path.resolve('../client/dist');
-  // app.use(express.static(clientDist, { maxAge: '1y' }));
-  // app.get('*', (req, res) => res.sendFile(path.join(clientDist, 'index.html')));
+  const clientDist = path.resolve('../client/dist');
+  app.use(express.static(clientDist, { maxAge: '1y' }));
+  app.get('*', (req, res) => res.sendFile(path.join(clientDist, 'index.html')));
 
   app.use(errorHandler);
 

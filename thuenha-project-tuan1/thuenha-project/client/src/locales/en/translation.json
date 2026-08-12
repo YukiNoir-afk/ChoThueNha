@@ -1,0 +1,76 @@
+{
+  "header": {
+    "home": "Home",
+    "apartment": "Apartment",
+    "room": "Room",
+    "house": "House",
+    "studio": "Studio",
+    "login": "Login",
+    "langSwitch": "VI"
+  },
+  "hero": {
+    "title": "Find Your Perfect Home",
+    "subtitle": "Thousands of rooms, apartments, and houses for rent across Vietnam"
+  },
+  "search": {
+    "keyword": "Search",
+    "keywordPlaceholder": "Address, area, district...",
+    "type": "Property Type",
+    "typePlaceholder": "All types",
+    "typeRoom": "Room",
+    "typeApartment": "Apartment",
+    "typeHouse": "House",
+    "typeStudio": "Studio",
+    "price": "Price Range",
+    "priceMin": "Min price",
+    "priceMax": "Max price",
+    "area": "Area",
+    "areaMin": "From m²",
+    "areaMax": "To m²",
+    "bedrooms": "Bedrooms",
+    "bedroomsPlaceholder": "Beds",
+    "searchBtn": "Search",
+    "noResults": "No results found",
+    "noResultsDesc": "Try adjusting your filters or search keywords",
+    "loading": "Loading data...",
+    "errorLoading": "An error occurred while loading data",
+    "retry": "Try again",
+    "nearMeBtn": "📍 Near me",
+    "nearMeActive": "✕ Clear location",
+    "nearMeResults": "Results near you ({{count}})"
+  },
+  "listing": {
+    "bedroom_one": "{{count}} BR",
+    "bedroom_other": "{{count}} BR",
+    "perMonth": "/month",
+    "seeAll": "See all",
+    "featured": "Featured",
+    "popular": "Popular Listings"
+  },
+  "detail": {
+    "title": "Listing Details",
+    "comingSoon": "Detail page will be completed in Week 5"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "dashboard": "Dashboard",
+    "newListing": "New Listing",
+    "comingSoon": "Admin pages will be completed in Week 6"
+  },
+  "footer": {
+    "support": "Support",
+    "faq": "FAQ",
+    "contact": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "about": "About Us",
+    "aboutDesc": "About ThuêNhà",
+    "careers": "Careers",
+    "blog": "Blog",
+    "forLandlords": "For Landlords",
+    "postListing": "Post a Listing",
+    "pricingPlans": "Pricing Plans",
+    "landlordGuide": "Landlord Guide",
+    "copyright": "© {{year}} ThuêNhà. All rights reserved."
+  }
+}
